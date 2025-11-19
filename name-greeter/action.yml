@@ -1,0 +1,23 @@
+name: Name Greeter Action
+
+description: 'An action that greets a user by name'
+
+inputs:
+  name:
+    description: 'Name to greet'
+    required: true
+
+outputs:
+  greeting:
+    description: 'Greeting message'
+    value: ${{ steps.greeting-step.outputs.greeting }}
+
+runs:
+  using: 'composite'
+  steps:
+    - run: echo "Hello, ${{ inputs.name }}!"
+      shell: bash
+
+    - id: greeting-step
+      shell: bash
+      run: echo "greeting=Hello, ${{ inputs.name }}!" >> "$GITHUB_OUTPUT"

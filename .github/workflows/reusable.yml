@@ -1,0 +1,31 @@
+name: Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        description: 'Name for the job'
+        required: true
+        type: string
+    outputs:
+      job_output:
+        description: 'Output from the reusable job'
+        value: ${{ jobs.reusable-job.outputs.job_output }}
+
+jobs:
+  reusable-job:
+    runs-on: ubuntu-latest
+    outputs:
+      job_output: "${{ steps.step_with_output.outputs.some_output }}"
+    steps:
+      # - run: echo "Hello, ${{ inputs.name }}"
+      
+      - uses: actions/checkout@v5
+
+      - uses: ./name-greeter
+        id: greeting
+        with:
+          name: ${{ inputs.name }}
+
+      - run: echo "some_output=${{ steps.greeting.outputs.greeting }}" >> "$GITHUB_OUTPUT"
+        id: step_with_output
