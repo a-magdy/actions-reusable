@@ -15,9 +15,6 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - run: echo "Hello, ${{ inputs.name }}!"
-      shell: bash
-
     - id: greeting-step
       shell: bash
-      run: echo "greeting=Hello, ${{ inputs.name }}!" >> "$GITHUB_OUTPUT"
+      run: ${{ github.action_path }}/greet.sh "${{ inputs.name }}"
