@@ -22,7 +22,7 @@ jobs:
       
       - uses: actions/checkout@v5
 
-      - uses: ./name-greeter
+      - uses: a-magdy/actions-reusable/name-greeter@main
         id: greeting
         with:
           name: ${{ inputs.name }}
