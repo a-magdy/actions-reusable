@@ -20,7 +20,7 @@ jobs:
     steps:
       # - run: echo "Hello, ${{ inputs.name }}"
       
-      - uses: actions/checkout@v5
+      # - uses: actions/checkout@v5
 
       - uses: a-magdy/actions-reusable/name-greeter@main
         id: greeting
