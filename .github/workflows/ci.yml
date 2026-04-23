@@ -13,3 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello from the reusable greet workflow!"
+
+      - run: echo "Hello, ${{ github.event.inputs.name }}! Welcome to the reusable greet workflow!"
+
