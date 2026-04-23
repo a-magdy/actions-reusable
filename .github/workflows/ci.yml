@@ -1,0 +1,15 @@
+name: Reusable Greet Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Name for the job'
+        required: false
+        default: 'World'
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello from the reusable greet workflow!"
