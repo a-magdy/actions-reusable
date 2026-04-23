@@ -16,3 +16,11 @@ jobs:
 
       - run: echo "Hello, ${{ github.event.inputs.name }}! Welcome to the reusable greet workflow!"
 
+      - run: echo "greeting=Hello, ${{ github.event.inputs.name }}! Welcome to the reusable greet workflow!" >> "$GITHUB_OUTPUT"
+        id: step_with_output
+
+      - run: |
+          echo "Output from the reusable workflow: ${{ steps.step_with_output.outputs.greeting }}"
+        name: Read Greeting Output
+
+
