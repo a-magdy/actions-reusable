@@ -26,6 +26,6 @@ jobs:
           name: ${{ inputs.name || 'World' }}
 
       - run: |
-          echo "Output from the reusable action: ${{ steps.step_with_output.outputs.greeting }}
+          echo "Output from the reusable action: ${{ steps.step_with_output.outputs.greeting }}"
           echo "something again"
         name: Read Greeting Output
