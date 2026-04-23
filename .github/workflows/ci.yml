@@ -12,15 +12,18 @@ jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello from the reusable greet workflow!"
+      # - run: echo "Hello from the reusable greet workflow!"
 
-      - run: echo "Hello, ${{ github.event.inputs.name }}! Welcome to the reusable greet workflow!"
+      # - run: |
+      #     echo "Output from the reusable workflow: ${{ steps.step_with_output.outputs.greeting }}"
+      #   name: Read Greeting Output
 
-      - run: echo "greeting=Hello, ${{ github.event.inputs.name }}! Welcome to the reusable greet workflow!" >> "$GITHUB_OUTPUT"
+      - uses: ./new-greeter
         id: step_with_output
+        with:
+          name: ${{ inputs.name || 'World' }}
 
       - run: |
-          echo "Output from the reusable workflow: ${{ steps.step_with_output.outputs.greeting }}"
+          echo "Output from the reusable action: ${{ steps.step_with_output.outputs.greeting }}
+          echo "something again"
         name: Read Greeting Output
-
-

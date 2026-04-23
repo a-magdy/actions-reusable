@@ -1,0 +1,26 @@
+name: New Greeter Action
+description: my fun action
+
+inputs:
+  name:
+    description: 'Name for the job'
+    required: false
+    default: 'World'
+
+outputs:
+  greeting:
+    description: 'Greeting message'
+    value: ${{ steps.step_with_output.outputs.greeting }}
+
+runs:
+  using: 'composite'
+
+  steps:
+
+    - run: echo "Hello, ${{ github.event.inputs.name }}! Welcome to the reusable greet workflow!"
+      shell: bash
+
+    - run: echo "greeting=Hello, ${{ github.event.inputs.name }}! Welcome to the reusable greet workflow!" >> "$GITHUB_OUTPUT"
+      id: step_with_output
+      shell: bash
+
